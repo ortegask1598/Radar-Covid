@@ -1,0 +1,7 @@
+es\upm\dit\isst\radarapi\controller\UsuarioController.class
+es\upm\dit\isst\radarapi\controller\Contacto_EstrechoController.class
+es\upm\dit\isst\radarapi\repository\Contacto_EstrechoRepository.class
+es\upm\dit\isst\radarapi\model\Usuario.class
+es\upm\dit\isst\radarapi\repository\UsuarioRepository.class
+es\upm\dit\isst\radarapi\model\Contacto_Estrecho.class
+es\upm\dit\isst\radarapi\SpringBootReactApplication.class
