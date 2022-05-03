@@ -9,7 +9,9 @@ public class Usuario {
     private String email;
     @NotEmpty
     private String contraseña;
+    @NotEmpty
     private Boolean positivo;
+    @NotEmpty
     private Boolean contactos;
   
     public Usuario(){
