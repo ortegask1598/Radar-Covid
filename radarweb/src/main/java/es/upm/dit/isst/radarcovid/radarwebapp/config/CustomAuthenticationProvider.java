@@ -1,4 +1,4 @@
-package es.upm.dit.isst.tfg.tfgwebapp.config;
+package es.upm.dit.isst.radarcovid.radarwebapp.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,26 +15,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    public final String TFGMANAGER_STRING= //	env.getProperty ("tfgmanager.server") + "tfgs/";
-	"http://localhost:8083/tfgs/";
+    public final String USERMANAGER_STRING= 
+	"http://localhost:8083/usuarios/";
     
     @Override
     public Authentication authenticate(Authentication authentication) 
       throws AuthenticationException {
         String name = authentication.getPrincipal().toString(); //getName();
-        if (name.contains("@upm.es")) {
-            List<SimpleGrantedAuthority> ga = new ArrayList<SimpleGrantedAuthority>();
-            ga.add(new SimpleGrantedAuthority("ROLE_PROFE"));
-            return new UsernamePasswordAuthenticationToken(name, "", ga);
-        }
-        if (name.contains("@alumnos.upm.es")) {
-            List<SimpleGrantedAuthority> ga = new ArrayList<SimpleGrantedAuthority>();
-            ga.add(new SimpleGrantedAuthority("ROLE_TFG"));
-            return new UsernamePasswordAuthenticationToken(name, "", ga);
-        }
-        if (name.contains("admin@upm.es")) {
+        if (name.contains("@admin.es")) {
             List<SimpleGrantedAuthority> ga = new ArrayList<SimpleGrantedAuthority>();
             ga.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            return new UsernamePasswordAuthenticationToken(name, "", ga);
+        }
+        if (name.contains("@hotmail.com")) {
+            List<SimpleGrantedAuthority> ga = new ArrayList<SimpleGrantedAuthority>();
+            ga.add(new SimpleGrantedAuthority("ROLE_USER"));
             return new UsernamePasswordAuthenticationToken(name, "", ga);
         }
         throw new UsernameNotFoundException ("could not login");

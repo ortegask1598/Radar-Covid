@@ -1,4 +1,4 @@
-package es.upm.dit.isst.tfg.tfgwebapp.config;
+package es.upm.dit.isst.radarcovid.radarwebapp.config;
 
 import java.util.Locale;
 

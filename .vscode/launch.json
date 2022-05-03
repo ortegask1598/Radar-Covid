@@ -10,6 +10,28 @@
             "projectName": "tfgapi1",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringBootReactApplication<radarapi0>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "es.upm.dit.isst.radarapi.SpringBootReactApplication",
+            "projectName": "radarapi0",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UserwebappApplication<tfgwebapp>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "es.upm.dit.isst.radarcovid.radarwebapp.UserwebappApplication",
+            "projectName": "tfgwebapp",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

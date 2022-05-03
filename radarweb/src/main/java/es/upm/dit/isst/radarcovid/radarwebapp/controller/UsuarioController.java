@@ -1,4 +1,4 @@
-package es.upm.dit.isst.radar.radarwebapp.controller;
+package es.upm.dit.isst.radarcovid.radarwebapp.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import es.upm.dit.isst.radar.radarwebapp.model.Usuario;
+import es.upm.dit.isst.radarcovid.radarwebapp.model.Usuario;
 
 
 
@@ -26,7 +26,11 @@ public class UsuarioController {
 
         public final String USERMANAGER_STRING= "http://localhost:8083/usuarios/";
 
-        public static final String VISTA_LISTA = "lista";
+        public static final String VISTA_INICIO = "inicio";
+
+        public static final String VISTA_LOGGIN = "registro";
+
+        public static final String VISTA_ALL_USERS = "lista_usuarios";
 
         public static final String VISTA_FORMULARIO = "formulario";
 
@@ -36,7 +40,7 @@ public class UsuarioController {
 
         public String inicio() {
 
-                return "redirect:/" + VISTA_LISTA;
+                return "redirect:/" + VISTA_INICIO;
 
         }
 
@@ -45,12 +49,12 @@ public class UsuarioController {
 
         public String login() {
 
-                return "redirect:/" + VISTA_LISTA;
+                return "redirect:/" + VISTA_LOGGIN;
 
         }
 
 
-       @GetMapping("/lista")
+       @GetMapping("/lista_usuarios")//DONE EXCEPT ALLOWS
 
         public String lista(Model model, Principal principal) {
 
@@ -86,7 +90,7 @@ public class UsuarioController {
 
                 model.addAttribute("usuarios", lista);
 
-                return VISTA_LISTA;
+                return VISTA_ALL_USERS;
 
         }
 
@@ -118,7 +122,7 @@ public class UsuarioController {
 
                 } catch(Exception e) {}
 
-                return "redirect:" + VISTA_LISTA;
+                return "redirect:" + VISTA_INICIO;
 
         }
 
@@ -131,7 +135,7 @@ public class UsuarioController {
 
                 if (principal == null || ! principal.getName().equals(id))
 
-                        return "redirect:/" + VISTA_LISTA;
+                        return "redirect:/" + VISTA_INICIO;
 
                         Usuario usuario = null;
 
@@ -143,7 +147,7 @@ public class UsuarioController {
 
                 model.put("accion", "../actualizar"); 
 
-                return usuario != null ? VISTA_FORMULARIO : "redirect:/" + VISTA_LISTA;
+                return usuario != null ? VISTA_FORMULARIO : "redirect:/" + VISTA_INICIO;
 
         }
 
@@ -163,7 +167,7 @@ public class UsuarioController {
 
                 } catch(Exception e) {}
 
-                return "redirect:" + VISTA_LISTA;
+                return "redirect:" + VISTA_INICIO;
 
         }
     @GetMapping("/eliminar/{id}")
@@ -172,7 +176,7 @@ public class UsuarioController {
 
         restTemplate.delete(USERMANAGER_STRING+ id);
 
-        return "redirect:/" + VISTA_LISTA;
+        return "redirect:/" + VISTA_INICIO;
 
     }
 
