@@ -77,7 +77,7 @@ public class Contacto_EstrechoController {
 
         }
 
-        @GetMapping("/crear")
+       @GetMapping("/registrarpositivo")
 
         public String crear(Map<String, Object> model) {
 
@@ -89,9 +89,9 @@ public class Contacto_EstrechoController {
 
                 return VISTA_FORMULARIO_CONTACTOS;
 
-        }
+        } 
 
-        @PostMapping("/guardar")
+        @PostMapping("/guardarpositivo")
 
         public String guardar(@Validated Contacto_Estrecho Contacto, BindingResult result) {
 
@@ -109,7 +109,7 @@ public class Contacto_EstrechoController {
 
         }
 
-        @GetMapping("/eliminar/{id}")
+        @GetMapping("/eliminarpositivo/{id}")
 
         public String eliminar(@PathVariable(value = "id") String id) {
 

@@ -26,12 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
 			.antMatchers("/css/**", "/img/**", "/layouts/**").permitAll()
 			.antMatchers("/", "/lista").permitAll()
-			.antMatchers("/crear", "/guardar").permitAll()
+			.antMatchers("/crear", "/guardar","/inicio","/lista_usuarios","/notificar/{id}").permitAll()
 			.anyRequest().authenticated()
-        .and()
+        /* .and()
             .formLogin()
 				.loginPage("/login")
-				.permitAll()
+				.permitAll() */
 		.and()
             .logout()
 			.permitAll();

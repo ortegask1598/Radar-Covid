@@ -8,10 +8,10 @@
 		<version>2.6.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>es.upm.dit.isst.tfg.tfgwebapp</groupId>
-	<artifactId>tfgwebapp</artifactId>
+	<groupId>es.upm.dit.isst.radar.radarwebapp</groupId>
+	<artifactId>radarwebapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>tfgwebapp</name>
+	<name>radarwebapp</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>

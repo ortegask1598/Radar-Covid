@@ -1,0 +1,153 @@
+header{
+    background-image: url(backgroundcabecera.jpg);
+    border: solid rgb(1, 1, 14);
+}
+
+.titulo{
+    text-align: center;
+    font-size: 50 px;
+    border-bottom: yellowgreen;
+    color: lightgrey;
+}
+
+.spacer{
+    clear: both;
+}
+
+.titulillo{
+    text-align: center;
+    font-size: 30 px;
+    border-bottom: yellowgreen;
+    color: lightgrey;
+}
+#registro{
+    text-align: center;
+    height: auto;
+    width: auto;
+}
+.formulario{
+    text-align: center;
+    justify-content: center;
+}
+.bandejaentrada{
+    text-decoration: underline;
+}
+.cuadro{
+    border: solid black;
+    background-color: white;
+    color: black;
+    padding: 5px;
+}
+.infoextra{
+    text-decoration: underline;
+}
+
+a{
+    text-decoration:none;
+}
+body{
+    /* background-image: url(./backgroundfoto.jpg); */
+    height: 674px;
+    width: auto;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color:lightgrey;
+    font-family: 'Roboto', sans-serif;
+    color:midnightblue;
+    padding: 5px;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 125px;
+    border:none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 1.3s ease all;
+    border-radius: 15px;
+    border: 1px solid #000;
+    background-color: white;
+
+}
+
+button:hover{
+    transform:scale(1.2);
+    background-color: rgba(172, 233, 247, 0.912);
+    text-decoration: underline;
+}
+button.enviar:hover{
+    background-color: lightgreen;
+
+}
+button.registro:hover{
+    background-color: rgba(194, 205, 216, 0.878);
+}
+
+
+
+.piedepagina{
+    width: 100%;
+    height: auto;
+    background-color: grey;
+    position:fixed;
+    bottom: 0px;
+    left:0px;
+    padding: 0px;
+}
+
+.piedepagina .grupo1{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 50px;
+    padding: 10px 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+.piedepagina .grupo1 .box figure{
+    width: 100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.piedepagina .grupo1 .box figure img{
+    width: 300px;
+}
+.piedepagina .grupo1 .box h2{
+    color: midnightblue;
+    margin-bottom: 25px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: underline;
+}
+.piedepagina .grupo1 .box p{
+    color: midnightblue;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.piedepagina .grupo2{
+    background-color: #0a1a2a;
+    padding: 10px 10px;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+.piedepagina .grupo2 small{
+    font-size: 15px;
+}
+
+

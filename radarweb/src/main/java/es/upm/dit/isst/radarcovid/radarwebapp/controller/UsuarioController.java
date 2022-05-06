@@ -26,13 +26,16 @@ public class UsuarioController {
 
         public final String USERMANAGER_STRING= "http://localhost:8083/usuarios/";
 
-        public static final String VISTA_INICIO = "inicio";
+        public static final String VISTA_INICIO = "main";
 
-        public static final String VISTA_LOGGIN = "registro";
+        public static final String VISTA_LOGGIN = "iniciosesion";
 
-        public static final String VISTA_ALL_USERS = "lista_usuarios";
+        public static final String VISTA_ALL_USERS = "listausuarios";
 
-        public static final String VISTA_FORMULARIO = "formulario";
+        public static final String VISTA_FORMULARIO = "registro";
+
+        public static final String VISTA_NOTIFICAR_POSITIVO = "Notificar-positivo";
+
 
         private RestTemplate restTemplate = new RestTemplate();
 
@@ -40,18 +43,18 @@ public class UsuarioController {
 
         public String inicio() {
 
-                return "redirect:/" + VISTA_INICIO;
+                return VISTA_LOGGIN;
 
         }
 
 
-        @GetMapping("/login")
+        @GetMapping("/inicio")
 
         public String login() {
 
-                return "redirect:/" + VISTA_LOGGIN;
+                return VISTA_INICIO;
 
-        }
+        }  
 
 
        @GetMapping("/lista_usuarios")//DONE EXCEPT ALLOWS
@@ -127,9 +130,9 @@ public class UsuarioController {
         }
 
 
-        @GetMapping("/editar/{id}")
+        @GetMapping("/notificar/{id}")
 
-        public String editar(@PathVariable(value = "id") String id,
+        public String notificar(@PathVariable(value = "id") String id,
 
                    Map<String, Object> model, Principal principal) {
 
@@ -147,7 +150,7 @@ public class UsuarioController {
 
                 model.put("accion", "../actualizar"); 
 
-                return usuario != null ? VISTA_FORMULARIO : "redirect:/" + VISTA_INICIO;
+                return usuario != null ? VISTA_NOTIFICAR_POSITIVO : "redirect:/" + VISTA_INICIO;
 
         }
 
