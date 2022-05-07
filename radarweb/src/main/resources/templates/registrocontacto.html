@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/sprint1.css"> 
 
@@ -17,21 +17,37 @@
 	
 </header>
 <body>
-		<div id=registro>
-			<div class=insertar>
-				<p class="spacer"></p>
-				<button class="botonM"><a href="main.html">Menú Principal</a></button></a>
-				<p class="spacer"></p>
-				<p>Introduce tu id:	<input  type="text" id="dni" placeholder="Escribe aquí..."></p>
-				<p>Introduce id de contacto:	<input  type="text" id="contraseña1" placeholder="Escribe aquí..."></p>
-				<p>Duración estimada:	<input  type="text" id="contraseña2" placeholder="Escribe aquí...."></p>
-				<p>Fecha:  <input  type="text" id="correo" placeholder="Escribe aquí..."></p>
-			</div>
-			<p class="spacer"></p>
-			<div class=confirmarregistro>
-				<button class="registro"><a href="main.html">REGISTRAR CONTACTO</a></button></a>
-			</div>
+	<form th:action="@{${accion}}" th:object="${Contacto_Estrecho}" method="post">
+		<label class="col-sm-2 col-form-label" th:text="#{cestrechos.CONTACTO_ESTRECHO.idusu1}"></label>
+		<div class="col-sm-6">
+			<input type="text" th:field="*{idusu1}">
+			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
 		</div>
+		<label class="col-sm-2 col-form-label" th:text="#{cestrechos.CONTACTO_ESTRECHO.idusu2}"></label>
+		<div class="col-sm-6">
+			<input type="text" th:field="*{idusu2}">
+			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
+		</div>
+		<label class="col-sm-2 col-form-label" th:text="#{cestrechos.CONTACTO_ESTRECHO.duracion}"></label>
+		<div class="col-sm-6">
+			<input type="text" th:field="*{duracion}">
+			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
+		</div>
+		<label class="col-sm-2 col-form-label" th:text="#{cestrechos.CONTACTO_ESTRECHO.caducidad}"></label>
+		<div class="col-sm-6">
+			<input type="text" th:field="*{caducidad}">
+			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
+		</div>
+
+	
+		<div class="col-sm-6">
+			<input type="submit" th:value="#{cestrechos.acciones.guardarcontacto}" class="btn btn-outline-primary">
+			<a th:href="@{${accion} == 'guardarcontacto' OR ${#fields.hasErrors('*')} ? 'inicio' : '../inicio'}"
+			class="btn btn-outline-danger" th:text="#{cestrechos.acciones.cancelar}"></a>
+			<!-- a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? 'lista' : '../lista'}" class="btn btn-outline-danger" th:text="#{tfgs.acciones.cancelar}"></a-->
+		</div>
+
+	</form>
 </body>
 <footer class="piedepagina">
 

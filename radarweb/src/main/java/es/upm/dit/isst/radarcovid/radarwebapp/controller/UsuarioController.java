@@ -113,7 +113,7 @@ public class UsuarioController {
 
         @PostMapping("/guardar")
 
-        public String guardar(@Validated Usuario Usuario, BindingResult result) {
+        public String guardar(Usuario Usuario, BindingResult result) {
 
                 if (result.hasErrors()) {
 
@@ -125,7 +125,7 @@ public class UsuarioController {
 
                 } catch(Exception e) {}
 
-                return "redirect:" + VISTA_INICIO;
+                return  VISTA_INICIO;
 
         }
 
@@ -150,7 +150,7 @@ public class UsuarioController {
 
                 model.put("accion", "../actualizar"); 
 
-                return usuario != null ? VISTA_NOTIFICAR_POSITIVO : "redirect:/" + VISTA_INICIO;
+                return usuario != null ? VISTA_NOTIFICAR_POSITIVO :  VISTA_INICIO;
 
         }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/sprint1.css"> 
 
@@ -20,16 +20,65 @@
 		<div id=registro>
 			<div class=insertar>
 				<p class="spacer"></p>
-				<button class="botonM"><a href="main.html">Menú Principal</a></button></a>
+				<button class="botonM"><a href="inicio">Menú Principal</a></button></a>
 				<p class="spacer"></p>
 				<p class=listausuarios>Lista de Usuarios</p>
 				<div class=cuadro>
-                    <ul>
-                        <li>Elemento 1</li>
-                        <li>Elemento 2</li>
-                        ...
-                        <li>Elemento N</li>
-                      </ul>
+                    <table class="table table-striped">
+						<thead>
+							<tr>
+								<th th:text="#{usuarios.USUARIO.id}"></th>
+								<th th:text="#{usuarios.USUARIO.correo}"></th>
+								<th th:text="#{usuarios.USUARIO.contraseña}"></th>
+								<th th:text="#{usuarios.USUARIO.positivo}"></th>
+								<th th:text="#{usuarios.USUARIO.contactos}"></th>
+								<!-- <span sec:authorize="isAuthenticated()">
+									<th th:text="#{tfgs.TFG.status}"></th>		
+									<th th:text="#{tfgs.TFG.memoria}"></th>
+								</span> -->
+								<th>-</th>
+								<th>-</th>
+								<th>-</th>
+								<th>-</th>			
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="USUARIO: ${usuarios}">
+								<td th:text="${Usuario.id}"></td>
+								<td th:text="${Usuario.correo}"></td>
+								<td th:text="${Usuario.contraseña}"></td>
+								<td th:text="${Usuario.positivo}"></td>
+								<td th:text="${Usuario.contactos}"></td>
+								<!-- <span sec:authorize="isAuthenticated()">
+									<td th:text="${TFG.status}"></td>
+									<td>
+										<form method="post" th:action="@{/upload}" th:object="${TFG}" enctype="multipart/form-data">
+											<div class="form-group">
+												<input type="hidden" th:value="${TFG.email}" name="email">
+												<input type="file" name="file" class="form-control-file">
+											<button type="submit" class="btn btn-outline-primary">Upload File</button>
+										</div></form>
+									</td>
+									<td><a th:href="@{download/} + ${TFG.email}" th:text="#{tfgs.acciones.memoria}" class="btn btn-outline-primary"></a>
+									</td>
+									<td>
+										<a th:href="@{editar/} + ${TFG.email}" th:text="#{tfgs.acciones.editar}" class="btn btn-outline-primary"></a>
+									</td><td>	
+										<a th:href="@{eliminar/} + ${TFG.email}" th:text="#{tfgs.acciones.eliminar}" class="btn btn-outline-danger"></a>
+									</td><td>
+										<a th:href="@{aceptar/} + ${TFG.email}" th:text="#{tfgs.acciones.aceptar}" class="btn btn-outline-danger"></a>
+									</td>
+								</span> -->
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="5">
+									<a th:href="@{crear}" class="btn btn-outline-primary btn-block" th:text="#{usuarios.acciones.anadir}"></a>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
 				</div>
 			</div>
 		</div>

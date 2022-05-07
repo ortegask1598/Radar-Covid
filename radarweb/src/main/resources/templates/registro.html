@@ -2,13 +2,14 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" href="css/sprint1.css"> 
+<!-- <link rel="stylesheet" type="text/css" href="css/sprint1.css">  -->
+<link th:href="@{css/sprint1.css}" rel="stylesheet" />
 <div id=fondo>
-<head th:replace="layouts/base::head(dark)">
+<head >
 	<meta charset="UTF-8">
 	<title>Radar Covid</title>
 </head>
-<header th:replace="layouts/base::header(dark)">
+<header>
 	
 	<!-- <div class=titulo><h1>Radar COVID</h1></div>
 	<p class="spacer"></p>
@@ -18,31 +19,33 @@
 </header>
 <body>
 	<form th:action="@{${accion}}" th:object="${Usuario}" method="post">
-		<div id=registro>
-			<div class=insertar>
-				<!-- <p>Correo electrónico: <input  type="text" id="correo" placeholder="Escribe aquí..."></p>
-				<p>Crea tu contraseña:	<input  type="text" id="contraseña1" placeholder="Escribe aquí..."></p>
-				<p>Repite tu contraseña:	<input  type="text" id="contraseña2" placeholder="Escribe aquí...."></p> -->
-				
-				<div class="form-group row">
-					<label class="col-sm-2 col-form-label" th:text="#{usuarios.Usuario.email}"></label>
-					<div clas="col-sm-6">
-						<input type="text" th:field="*{email}">
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
-					</div>
-				</div>
-				
-				<label class="" th:text="#{usuarios.Usuario.email}"></label>
-				<label class="" th:text="#{usuarios.Usuario.email}"></label>
-
-				
-			</div>
-			<p class="spacer"></p>
-			<div class=confirmarregistro>
-				<p>He leido y acepto los <u>términos y condiciones</u> de servicio <input type="checkbox"></p>
-				<button class="registro"><a href="main.html">REGISTRARME</a></button></a>
-			</div>
+		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.email}"></label>
+		<div class="col-sm-6">
+			<input type="text" th:field="*{email}">
+			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
 		</div>
+		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.contrasena}"></label>
+		<div class="col-sm-6">
+			<input type="text" th:field="*{contraseña}">
+			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
+		</div>
+		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.positivo}"></label>
+		<div class="col-sm-6">
+			<input type="text" th:field="*{positivo}">
+			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
+		</div>
+		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.contactos}"></label>
+		<div class="col-sm-6">
+			<input type="text" th:field="*{contactos}">
+			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
+		</div>
+		<div class="col-sm-6">
+			<input type="submit" th:value="#{usuarios.acciones.guardar}" class="btn btn-outline-primary">
+			<a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? 'inicio' : '../inicio'}"
+			class="btn btn-outline-danger" th:text="#{usuarios.acciones.cancelar}"></a>
+			<!-- a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? 'lista' : '../lista'}" class="btn btn-outline-danger" th:text="#{tfgs.acciones.cancelar}"></a-->
+		</div>
+
 	</form>
 </body>
 <footer class="piedepagina">
