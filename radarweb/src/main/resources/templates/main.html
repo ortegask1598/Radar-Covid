@@ -31,6 +31,8 @@
 			<a th:href="@{${accion} == 'notificar' OR ${#fields.hasErrors('*')} ? '/' : '../'}"
 			class="btn btn-outline-danger" th:text="#{usuarios.acciones.cancelar}"></a>
 		</div>
+
+		<a th:text="${Usuario.contactos}==true ? 'las liao' : 'congrats mi rey'"></a>
 	</form>
 
 </body>
