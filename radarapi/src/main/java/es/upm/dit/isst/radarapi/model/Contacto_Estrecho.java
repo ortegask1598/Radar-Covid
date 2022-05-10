@@ -1,6 +1,8 @@
 package es.upm.dit.isst.radarapi.model;
 import javax.persistence.*;
-import java.util.Date;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 public class Contacto_Estrecho {
@@ -14,7 +16,8 @@ public class Contacto_Estrecho {
     private String id_usu1;
     private String id_usu2;
     private Long duracion;
-    private Date caducidad;
+    @Column(name = "caducidad")
+    private LocalDateTime caducidad;
 
 
     public Contacto_Estrecho(){
@@ -57,11 +60,13 @@ public class Contacto_Estrecho {
         this.duracion = duracion;
     }
 
-    public Date getCaducidad(){
-        return caducidad;
+    public LocalDateTime getCaducidad(){
+        LocalDateTime localDateTime = LocalDateTime.now();
+        LocalDateTime otherDate = localDateTime.plus(2, ChronoUnit.DAYS);
+        return otherDate;
     }
 
-    public void setCaducidad(Date caducidad){
+    public void setCaducidad(LocalDateTime caducidad){
         this.caducidad = caducidad;
     }
 

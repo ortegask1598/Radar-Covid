@@ -37,7 +37,7 @@ public class UsuarioController {
 
     @GetMapping("/usuarios/{id}")
     ResponseEntity<Usuario> read(@PathVariable String id) {
-        return usuarioRepository.findById(id).map(usuario -> ResponseEntity.ok().body(usuario)).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));
+        return usuarioRepository.findByEmail(id).map(usuario -> ResponseEntity.ok().body(usuario)).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/usuarios/{id}")
@@ -47,7 +47,7 @@ public class UsuarioController {
             usuario.setEmail(usuario.getEmail());
             usuario.setContraseña(usuario.getContraseña());
             usuario.setPositivo(newUsuario.getPositivo());
-            usuario.setContactos(usuario.getContactos());
+            usuario.setContactos(newUsuario.getContactos());
             usuarioRepository.save(usuario);
             return ResponseEntity.ok().body(usuario);
         }).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));

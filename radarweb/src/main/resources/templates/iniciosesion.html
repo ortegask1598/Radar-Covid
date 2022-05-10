@@ -3,7 +3,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/sprint1.css"> 
+<link th:href="@{css/sprint1.css}" rel="stylesheet" />
 
 <div id=fondo>
 <head>
@@ -37,6 +37,7 @@
 			<a th:href="@{${accion} == '/comprobar' OR ${#fields.hasErrors('*')} ? 'inicio/{Usuario.email}' : '../inicio/{Usuario.email}'}"></a>
 		</td> 
 		<p>¿No tienes cuenta? <u><a href="crear">Regístrate</a></u></p>
+	 </form>
 		
 </body>
 <footer class="piedepagina">

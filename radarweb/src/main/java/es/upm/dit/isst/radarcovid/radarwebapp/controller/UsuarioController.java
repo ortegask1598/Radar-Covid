@@ -57,16 +57,15 @@ public class UsuarioController {
 
         @GetMapping("/inicio/{id}")
 
-        public String login(){/* @PathVariable(value = "id") String id,
+        public String login(@PathVariable(value = "id") String id,
 
         Map<String, Object> model) {
-                List<Usuario> usuarios = new ArrayList<Usuario>();
-               
-                
-                usuarios = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING, Usuario[].class).getBody());
+/*                 List<Usuario> usuarios = new ArrayList<Usuario>();
+                Usuario Usuario = new Usuario(); */
 
-                //map lista para sacar el usuario con ese correo
-                model.put("Usuario", Usuario); */
+               Usuario Usuario = restTemplate.getForObject(USERMANAGER_STRING + id, Usuario.class);
+
+                model.put("Usuario", Usuario);
 
                 return VISTA_INICIO;
 

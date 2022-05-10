@@ -18,8 +18,10 @@ public class Usuario {
 
     private String email;
     private String contraseña;
-    private Boolean positivo;
-    private Boolean contactos;
+    @Column(name = "positivo")
+    private Boolean positivo = false;
+    @Column(name = "contactos")
+    private Boolean contactos = false;
 
     public Usuario(){
         this.id=null;
