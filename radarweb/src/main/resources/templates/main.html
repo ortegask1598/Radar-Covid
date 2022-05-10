@@ -17,24 +17,28 @@
 	
 </header>
 <body>
-	<form th:action="@{${accion}}" th:object="${Usuario}"  method="post">	
-		<p>Hola <a th:text="${Usuario.email}"></a></p>
-		
-		<p>¿Has dado positivo en un test covid?</p>
+	<div class="formulario">
+	<form th:action="@{${accion}}" th:object="${Usuario}" method="post">	
+		<h1 class="mensaje">Hola <a th:text="${Usuario.email}"></a></h1>
+
+		<p class="pregunta">¿Has dado positivo en un test covid?</p>
 
 		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.positivo}"></label>
 		<div class="col-sm-6">
 			<input type="text" th:field="*{positivo}">
 		</div>
 		<div class="col-sm-6">
-			<input type="submit" th:value="#{usuarios.acciones.guardar}" class="btn btn-outline-primary">
-			<a th:href="@{${accion} == 'notificar' OR ${#fields.hasErrors('*')} ? '/' : '../'}"
-			class="btn btn-outline-danger" th:text="#{usuarios.acciones.cancelar}"></a>
+			<p class="spacer"></p>
+			<button type="submit" th:value="#{usuarios.acciones.guardar}" class="guardar">Guardar</button>
+			<u><a th:href="@{${accion} == 'notificar' OR ${#fields.hasErrors('*')} ? '/' : '../'}"
+			class="btn btn-outline-danger" th:text="#{usuarios.acciones.cancelar}"></a></u>
 		</div>
-
-		<a th:text="${Usuario.contactos}==true ? 'las liao' : 'congrats mi rey'"></a>
+		<p class="spacer"></p>
+		<div class="cuadro">
+		<a th:text="${Usuario.contactos}==true ? 'LO SIENTO, HAS ESTADO EN CONTACTO CON UN POSITIVO' : 'CONGRATS MASTER, SIGUES LIMPIO'"></a>
+		</div>
 	</form>
-
+</div>
 </body>
 <footer class="piedepagina">
 

@@ -18,6 +18,7 @@
 	
 </header>
 <body>
+	<p class="spacer"></p>
 	<div class="formulario">
 	<form th:action="@{${accion}}" th:object="${Usuario}" method="post">
 		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.email}"></label>
@@ -40,15 +41,16 @@
 			<input type="text" th:field="*{contactos}">
 			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
 		</div>
+		<p class="spacer"></p>
 		<div class="col-sm-6">
-			<input type="submit" th:value="#{usuarios.acciones.guardar}" class="btn btn-outline-primary">
-			<a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? '/' : '../'}"
-			class="btn btn-outline-danger" th:text="#{usuarios.acciones.cancelar}"></a>
+			<button type="submit" th:value="#{usuarios.acciones.guardar}" class="guardar">Guardar</button>
+			<u><a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? '/' : '../'}"
+			class="btn btn-outline-danger" th:text="#{usuarios.acciones.cancelar}"></a></u>
 			<!-- a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? 'lista' : '../lista'}" class="btn btn-outline-danger" th:text="#{tfgs.acciones.cancelar}"></a-->
 		</div>
 
 	</form>
-</div>
+	</div>
 </body>
 <footer class="piedepagina">
 

@@ -17,7 +17,6 @@
 	
 </header>
 <body>
-	<form th:object="${Usuario}" method="post">
 		<div id=registro>
 			<div class=insertar>
 				<p class="spacer"></p>
@@ -30,7 +29,7 @@
 							<tr>
 								<th th:text="#{usuarios.USUARIO.id}"></th>
 								<th th:text="#{usuarios.USUARIO.email}"></th>
-								<th th:text="#{usuarios.USUARIO.contrasena}"></th>
+								<th th:text="#{usuarios.USUARIO.contraseña}"></th>
 								<th th:text="#{usuarios.USUARIO.positivo}"></th>
 								<th th:text="#{usuarios.USUARIO.contactos}"></th>
 								<!-- <span sec:authorize="isAuthenticated()">
@@ -82,7 +81,6 @@
 				</div>
 			</div>
 		</div>
-	</form>
 </body>
 <footer class="piedepagina">
 

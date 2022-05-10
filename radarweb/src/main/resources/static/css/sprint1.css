@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+
 header{
     background-image: url(../img/backgroundcabecera.jpg);
     border: solid rgb(1, 1, 14);
@@ -10,6 +12,26 @@ header{
     color: lightgrey;
 }
 
+.mensaje{
+    position: relative;
+    color: darkslategrey;
+    font-family: 'Dancing Script', cursive;
+    font-size: 120 px;
+}
+
+/* .cancelar{
+} */
+
+/* .cancelar:hover{
+    color:red;
+    background-color: red;
+    text-decoration: red;
+} */
+
+.pregunta{
+    color: black;
+
+}
 .spacer{
     clear: both;
 }
@@ -33,10 +55,12 @@ header{
     text-decoration: underline;
 }
 .cuadro{
+    margin: auto;
     border: solid black;
-    background-color: white;
+    background-color: rgba(222, 214, 214, 0.808);
     color: black;
     padding: 5px;
+    width: 80%;
 }
 .infoextra{
     text-decoration: underline;
@@ -91,6 +115,19 @@ button.enviar:hover{
 }
 button.registro:hover{
     background-color: rgba(194, 205, 216, 0.878);
+}
+
+button.guardar{
+    width: auto;
+    height: 20px;
+    font-size: 15px;
+    font-weight: 95px;
+}
+button.enviar{
+    width: auto;
+    height: 20px;
+    font-size: 15px;
+    font-weight: 95px;
 }
 
 

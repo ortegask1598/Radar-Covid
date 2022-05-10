@@ -18,6 +18,8 @@
 	
 </header>
 <body>
+	<p class="spacer"></p>
+	<div class="formulario">
  	<form th:action="@{${accion}}" th:object="${Usuario}" method="post">
 
 		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.email}"></label>
@@ -31,13 +33,15 @@
 				<input type="text" th:field="*{contraseña}">
 				<small class="form-text text-danger" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></small>
 			</div>
-		</div> 
+		</div>
+		<p class="spacer"></p> 
 		<td>
-			<input type="submit" th:value="Enviar" class="btn btn-outline-primary">
+			<button type="submit" th:value="Enviar" class="enviar">Enviar</button>
 			<a th:href="@{${accion} == '/comprobar' OR ${#fields.hasErrors('*')} ? 'inicio/{Usuario.email}' : '../inicio/{Usuario.email}'}"></a>
 		</td> 
 		<p>¿No tienes cuenta? <u><a href="crear">Regístrate</a></u></p>
 	 </form>
+	</div>
 		
 </body>
 <footer class="piedepagina">
