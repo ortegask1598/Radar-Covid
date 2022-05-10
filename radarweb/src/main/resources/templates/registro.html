@@ -1,49 +1,55 @@
-
+<html>
+    <head>
+    </head>
+    <body>
+        Hola registro!
+		<p>Pincha <a href="/inicio/{id}">para ir a alumnos</a></p>
+		<p>Pincha <a href="/lista_usuarios">para ir a profesores</a></p>
+		<p>Pincha <a href="/crear">para ir a todos</a></p>
+    </body>
+</html>
+<!--
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-<!-- <link rel="stylesheet" type="text/css" href="css/sprint1.css">  -->
 <link th:href="@{css/sprint1.css}" rel="stylesheet" />
 <div id=fondo>
 <head >
 	<meta charset="UTF-8">
 	<title>Radar Covid</title>
+	<link th:href="@{/css/sprint1.css}" rel="stylesheet">
 </head>
 <header>
 	
-	<!-- <div class=titulo><h1>Radar COVID</h1></div>
-	<p class="spacer"></p>
-	<div class=titulillo><h2>Registro</h2></div>
-	<p class="spacer"></p> -->
-	
+
 </header>
 <body>
 	<form th:action="@{${accion}}" th:object="${Usuario}" method="post">
 		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.email}"></label>
 		<div class="col-sm-6">
 			<input type="text" th:field="*{email}">
-			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
+			
 		</div>
 		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.contrasena}"></label>
 		<div class="col-sm-6">
 			<input type="text" th:field="*{contraseña}">
-			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
+	
 		</div>
 		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.positivo}"></label>
 		<div class="col-sm-6">
 			<input type="text" th:field="*{positivo}">
-			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
+		
 		</div>
 		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.contactos}"></label>
 		<div class="col-sm-6">
 			<input type="text" th:field="*{contactos}">
-			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
+		
 		</div>
 		<div class="col-sm-6">
 			<input type="submit" th:value="#{usuarios.acciones.guardar}" class="btn btn-outline-primary">
 			<a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? 'inicio' : '../inicio'}"
 			class="btn btn-outline-danger" th:text="#{usuarios.acciones.cancelar}"></a>
-			<!-- a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? 'lista' : '../lista'}" class="btn btn-outline-danger" th:text="#{tfgs.acciones.cancelar}"></a-->
+		
 		</div>
 
 	</form>

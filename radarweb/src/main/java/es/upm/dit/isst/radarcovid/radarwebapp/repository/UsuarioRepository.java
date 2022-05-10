@@ -4,15 +4,14 @@ import es.upm.dit.isst.radarcovid.radarwebapp.model.Usuario;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
-
-    Object findById(String id);
-
-    void deleteById(String id);
-
-    List<Usuario> findAll();
+    //@Query("Seleccionar usuario from Usuario u donde usuario.id = :id")
+	public Usuario getUserById(@Param("id") String id);
 
 }

@@ -19,7 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.upm.dit.isst.radarcovid.radarwebapp.model.Usuario;
 import es.upm.dit.isst.radarcovid.radarwebapp.repository.UsuarioRepository;
-import es.upm.dit.isst.radarcovid.radarwebapp.service.IUsuarioService;
+import org.slf4j.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 
 
 
@@ -27,10 +30,13 @@ import es.upm.dit.isst.radarcovid.radarwebapp.service.IUsuarioService;
 
 public class UsuarioController {
 
-        private IUsuarioService usuarioService;
-        private final UsuarioRepository usuarioRepository;
-       // public static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
+/*      private IUsuarioService usuarioService;
+        public static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
 
+*/
+        private final UsuarioRepository usuarioRepository;
+
+        @Autowired
         public UsuarioController(UsuarioRepository t) {
                 this.usuarioRepository = t;
           
@@ -38,20 +44,23 @@ public class UsuarioController {
 
         public final String USERMANAGER_STRING= "http://localhost:8083/usuarios/";
 
-        public static final String VISTA_INICIO = "main";
+        public static final String VISTA_INICIO = "main.html";
 
-        public static final String VISTA_LOGGIN = "iniciosesion";
+        public static final String VISTA_LOGGIN = "iniciosesion.html";
 
-        public static final String VISTA_ALL_USERS = "listausuarios";
+        public static final String VISTA_ALL_USERS = "listausuarios.html";
 
-        public static final String VISTA_FORMULARIO = "registro";
+        public static final String VISTA_FORMULARIO = "registro.html";
 
-        public static final String VISTA_NOTIFICAR_POSITIVO = "Notificar-positivo";
+        public static final String VISTA_NOTIFICAR_POSITIVO = "Notificar-positivo.html";
 
 
         private RestTemplate restTemplate = new RestTemplate();
 
-        @GetMapping("/")
+        // Si no conseguimos conectarlo al api
+        Usuario usuario = new Usuario((long) 1, "d.martos@alumnos.upm.es", "1234", true, true);
+
+/*         @GetMapping("/")
 
         public String inicio( Map<String, Object> model) {
 
@@ -62,42 +71,41 @@ public class UsuarioController {
 
                 return VISTA_LOGGIN;
 
-        }
+        } */
+        @GetMapping("/")
+
+        public String inicio() {
+                return VISTA_LOGGIN;
+
+        } 
 
 
-        @GetMapping("/inicio")//("/inicio/{id}")
+        // Quizá no sea necesario para "obligar" que se accede al MAIN una vez registrado ¿?
+/*         @GetMapping("/inicio")//("/inicio/{id}")
 
         public String login() {
 
                 return VISTA_INICIO;
 
-        }  
+        }   */
 
-/* 	@GetMapping("/clients/client")
-	public String getUsuario(Model model, @RequestParam("id") String id){
-		var usuario  = usuarioService.findOne(id);
-		model.addAttribute("usuario", usuario);
-		return VISTA_INICIO;
-	} */
-     
-
-
-        // Creo que esta es la correcta, me suena haberla visto en diapos y examenes, pero no se por qué da map como error
-        
-/*         @GetMapping("/inicio/{id}")
-        ResponseEntity<Usuario> readById(@PathVariable String id) {
-          return usuarioRepository.findById(id).map (usuario ->
-                ResponseEntity.ok().body(usuario)
-          ).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));
-        }  */
+        @GetMapping("/inicio/{id}") 
+        public String inicioUsuario(@PathVariable("id") Long id, Model model){
+                Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario inválido Id:" + id));
+            //model.addAttribute("vendedores", usuarioRepository.findByTipo("ROLE_VEND"));
+            model.addAttribute("id", usuario.getId());
+ 
+            return VISTA_INICIO;
+        }
 
 
 
        @GetMapping("/lista_usuarios")//DONE EXCEPT ALLOWS
 
-        public String lista(Model model, Principal principal) {
+        public String lista(/* Model model, Principal principal */) {
 
-                List<Usuario> lista = new ArrayList<Usuario>();
+                /* List<Usuario> lista = new ArrayList<Usuario>();
 
                 if (principal == null || principal.getName().equals(""))
 
@@ -105,7 +113,7 @@ public class UsuarioController {
 
                                            Usuario[].class).getBody());
                 
-                model.addAttribute("usuarios", lista);
+                model.addAttribute("usuarios", lista); */
                 /* else if (principal.getName().contains("@upm.es"))
 
                         lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING
@@ -129,7 +137,7 @@ public class UsuarioController {
                 } */
 
 
-                return VISTA_ALL_USERS;
+                return "listausuarios.html";
 
         }
 
@@ -168,7 +176,7 @@ public class UsuarioController {
 
         @GetMapping("/notificar/{id}")
 
-        public String notificar(@PathVariable(value = "id") String id,
+        public String notificar(@PathVariable(value = "id") Long id,
 
                    Map<String, Object> model, Principal principal) {
 
@@ -211,7 +219,7 @@ public class UsuarioController {
         }
     @GetMapping("/eliminar/{id}")
 
-    public String eliminar(@PathVariable(value = "id") String id) {
+    public String eliminar(@PathVariable(value = "id") Long id) {
 
         restTemplate.delete(USERMANAGER_STRING+ id);
 
@@ -219,7 +227,7 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/comprobar")
+/*     @GetMapping("/comprobar")
 
     public String comprobar(Usuario Usuario, BindingResult result) {
 
@@ -237,6 +245,6 @@ public class UsuarioController {
 
         return  "redirect:/";
 
-}
+} */
 
 }

@@ -1,4 +1,28 @@
+<html>
+    <head>
+    </head>
+    <body>
+        Hola iniciosesion!
+		<p>Pincha <a href="/inicio/{id}">para ir a alumnos</a></p>
+		<p>Pincha <a href="/lista_usuarios">para ir a profesores</a></p>
+		<p>Pincha <a href="/crear">para ir a todos</a></p>
+    </body>
+</html>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
@@ -9,6 +33,8 @@
 <head>
 	
 	<title>Radar Covid</title>
+
+	<link th:href="@{/css/sprint1.css}" rel="stylesheet">
 </head>
 <header>
 	<div class=titulo><h1>Radar COVID</h1></div>
@@ -18,19 +44,7 @@
 	
 </header>
 <body>
-<!-- 	<form th:action="@{/inicio/{id}(id=${Usuario.id})}" th:object="${Usuario}" method="post">
-		<div class="form-row">
-			<div class="col-md-4 mb-3">
-				<label for="validationTooltip01">Correo electrónico</label>
-				<input type="text" class="form-control" id="validationTooltip01" placeholder="Correo Electrónico"  th:field="*{Correo}"/>
-			</div>
-			<div class="col-md-4 mb-3">
-				<label for="validationTooltip02">Contraseña</label>
-				<input type="text" class="form-control" id="validationTooltip02" placeholder="Contraseña"  th:field="*{contraseña}"/>
-			</div>
-		<button class="btn btn-primary" type="submit">Entrar</button>
-	</form>
- -->
+
  <form action="#" th:action="@{/inicio/{id}} + ${Usuario.id}" th:object="${Usuario}" method="post">
 
 	<div class="form-group row">
@@ -46,22 +60,14 @@
 			<input type="text" th:field="*{contraseña}">
 			<small class="form-text text-danger" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></small>
 		</div>
-	</div> -->
+	</div>
 	<td>
 		<a th:href="@{/inicio/{id}} + ${Usuario.id}" th:text="enviar" class="btn btn-outline-primary"></a>
 	</td> 
+</form>
 
 
 
-<!--   Lo mismo pero con Thymeleaf 		
-	<form th:action="@{/inicio}" method="post">
-            <div><label> Correo electrónico : <input type="text" name="email"/> </label></div>
-            <div><label> Contraseña: <input type="password" name="contraseña"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-		<p class="spacer"></p>
-		<p>¿No tienes cuenta? <u><a th:href="@{/crear}">Regístrate</a></u></p>
-	 -->
 </body>
 <footer class="piedepagina">
 
@@ -89,4 +95,5 @@
 
 </footer>
 </div>
-</html>
+</html> 
+-->

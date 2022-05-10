@@ -1,32 +1,55 @@
 package es.upm.dit.isst.radarcovid.radarwebapp.model;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotEmpty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
-
-    private String id;
-    @Email
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @NotBlank(message = "Email obligatorio, será el username")
+    @Column(name = "username")
     private String email;
-    @NotEmpty
-    private String contraseña;
-    @NotEmpty
+    @NotBlank(message = "Contraseña es obligatoria")
+    @Column(name = "password")
+    private String password;
+    @NotBlank(message = "Obligatorio marcar si es ud positivo")
+    @Column(name = "positivo")
     private Boolean positivo;
-    @NotEmpty
+    @NotBlank(message = "Obligatorio marcar si tiene contacto positivo")
+    @Column(name = "contacto")
     private Boolean contactos;
   
     public Usuario(){
+    }
+/*     public Usuario(){
         this.id=null;
         this.email=null;
         this.contraseña=null;
         this.positivo=null;
         this.contactos=null;
+    } */
+    public Usuario(Long id, String email, String password, Boolean positivo, Boolean contactos){
+        this.id=id;
+        this.email=email;
+        this.password=password;
+        this.positivo=positivo;
+        this.contactos=contactos;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id){
+    public void setId(Long id){
         this.id = id;
     }
 
@@ -38,12 +61,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña){
-        this.contraseña = contraseña;
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public Boolean getPositivo(){

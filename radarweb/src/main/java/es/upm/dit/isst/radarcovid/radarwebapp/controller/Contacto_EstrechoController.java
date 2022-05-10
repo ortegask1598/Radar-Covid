@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -17,12 +18,23 @@ import org.springframework.web.client.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.upm.dit.isst.radarcovid.radarwebapp.model.Contacto_Estrecho;
+import es.upm.dit.isst.radarcovid.radarwebapp.repository.ContactoRepository;
+import org.slf4j.*;
+import org.springframework.stereotype.Controller;
 
 
 @Controller
 
 public class Contacto_EstrechoController {
 
+         private final ContactoRepository contactoRepository;
+
+        @Autowired
+        public Contacto_EstrechoController(ContactoRepository t) {
+                this.contactoRepository = t;
+          
+            }
+ 
         public final String CONTACT_MANAGER_STRING= "http://localhost:8083/contactos/";
 
         public static final String VISTA_INICIO = "inicio";
