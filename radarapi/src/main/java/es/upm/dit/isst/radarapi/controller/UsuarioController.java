@@ -42,12 +42,12 @@ public class UsuarioController {
 
     @PutMapping("/usuarios/{id}")
     ResponseEntity<Usuario> update(@RequestBody Usuario newUsuario, @PathVariable String id) {
-        return usuarioRepository.findById(id).map(usuario -> {
+        return usuarioRepository.findByEmail(id).map(usuario -> {
             usuario.setId(usuario.getId());
             usuario.setEmail(usuario.getEmail());
             usuario.setContraseña(usuario.getContraseña());
             usuario.setPositivo(newUsuario.getPositivo());
-            usuario.setContactos(newUsuario.getContactos());
+            usuario.setContactos(usuario.getContactos());//CAMBIAR POR TU MADRE
             usuarioRepository.save(usuario);
             return ResponseEntity.ok().body(usuario);
         }).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));

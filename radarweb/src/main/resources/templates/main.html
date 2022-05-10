@@ -17,9 +17,20 @@
 	
 </header>
 <body>
-	<form th:object="${Usuario}" method="post">	
-		<p>Hola </p>
-		<p th:text="${Usuario.email}"></p>
+	<form th:action="@{${accion}}" th:object="${Usuario}" method="post">	
+		<p>Hola <a th:text="${Usuario.email}"></a></p>
+
+		<p>¿Has dado positivo en un test covid?</p>
+
+		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.positivo}"></label>
+		<div class="col-sm-6">
+			<input type="text" th:field="*{positivo}">
+		</div>
+		<div class="col-sm-6">
+			<input type="submit" th:value="#{usuarios.acciones.guardar}" class="btn btn-outline-primary">
+			<a th:href="@{${accion} == 'notificar' OR ${#fields.hasErrors('*')} ? '/' : '../'}"
+			class="btn btn-outline-danger" th:text="#{usuarios.acciones.cancelar}"></a>
+		</div>
 	</form>
 
 </body>

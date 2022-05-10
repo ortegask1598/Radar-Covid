@@ -67,6 +67,8 @@ public class UsuarioController {
 
                 model.put("Usuario", Usuario);
 
+                model.put("accion", "../notificar/" + id);
+
                 return VISTA_INICIO;
 
         }  
@@ -144,29 +146,28 @@ public class UsuarioController {
         }
 
 
-        @GetMapping("/notificar/{id}")
+        @PostMapping("/notificar/{id}")
 
-        public String notificar(@PathVariable(value = "id") String id,
+        public String notificar(@PathVariable(value = "id") String id, Usuario usuario, BindingResult result){
 
-                   Map<String, Object> model, Principal principal) {
+                 if (result.hasErrors()) {
 
-                if (principal == null || ! principal.getName().equals(id))
+                        return "redirect:/inicio" ;
 
-                        return "redirect:/" + VISTA_INICIO;
+                }
 
-                        Usuario usuario = null;
+                Usuario u = restTemplate.getForObject(USERMANAGER_STRING + id, Usuario.class);
 
-                try { usuario = restTemplate.getForObject(USERMANAGER_STRING + id, Usuario.class);
+                u.setPositivo(usuario.getPositivo());
 
-                } catch (HttpClientErrorException.NotFound ex) {}
+                try { restTemplate.put(USERMANAGER_STRING + id, u, Usuario.class);
+                        
+                } catch(Exception e) {} 
 
-                model.put("Usuario", usuario);
-
-                model.put("accion", "../actualizar"); 
-
-                return usuario != null ? VISTA_NOTIFICAR_POSITIVO :  VISTA_INICIO;
-
+                return "redirect:/inicio/" + id ;
         }
+
+
 
         @PostMapping("/actualizar")
 
@@ -197,7 +198,7 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/comprobar")
+    @PostMapping("/comprobar")
 
     public String comprobar(Usuario Usuario, BindingResult result) {
 
