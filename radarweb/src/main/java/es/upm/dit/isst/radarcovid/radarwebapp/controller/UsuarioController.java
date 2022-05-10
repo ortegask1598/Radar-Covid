@@ -55,9 +55,18 @@ public class UsuarioController {
         }
 
 
-        @GetMapping("/inicio")//("/inicio/{id}")
+        @GetMapping("/inicio/{id}")
 
-        public String login() {
+        public String login(){/* @PathVariable(value = "id") String id,
+
+        Map<String, Object> model) {
+                List<Usuario> usuarios = new ArrayList<Usuario>();
+               
+                
+                usuarios = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING, Usuario[].class).getBody());
+
+                //map lista para sacar el usuario con ese correo
+                model.put("Usuario", Usuario); */
 
                 return VISTA_INICIO;
 
@@ -129,11 +138,10 @@ public class UsuarioController {
                 }
 
                 try { restTemplate.postForObject(USERMANAGER_STRING, Usuario, Usuario.class);
-
+                        
                 } catch(Exception e) {}
 
-                return  "redirect:/inicio/" + Usuario.getId();
-
+                return  "redirect:/inicio/" + Usuario.getEmail();
         }
 
 
@@ -200,7 +208,7 @@ public class UsuarioController {
 
         }
 
-        return  "redirect:/";
+        return  "redirect:/" + Usuario.getEmail();
 
 
 }

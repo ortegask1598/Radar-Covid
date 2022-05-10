@@ -7,6 +7,6 @@ import es.upm.dit.isst.radarapi.model.Usuario;
 
 public interface UsuarioRepository extends CrudRepository <Usuario, String> {
 
-    List<Usuario> findByContactos(String[] contactos);
+    List<Usuario> findByEmail(String email);
 
 } 
