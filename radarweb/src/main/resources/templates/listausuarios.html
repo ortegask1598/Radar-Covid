@@ -28,7 +28,7 @@
 						<thead>
 							<tr>
 								<th th:text="#{usuarios.USUARIO.id}"></th>
-								<th th:text="#{usuarios.USUARIO.correo}"></th>
+								<th th:text="#{usuarios.USUARIO.email}"></th>
 								<th th:text="#{usuarios.USUARIO.contraseña}"></th>
 								<th th:text="#{usuarios.USUARIO.positivo}"></th>
 								<th th:text="#{usuarios.USUARIO.contactos}"></th>
@@ -44,8 +44,7 @@
 						</thead>
 						<tbody>
 							<tr th:each="USUARIO: ${usuarios}">
-								<td th:text="${Usuario.id}"></td>
-								<td th:text="${Usuario.correo}"></td>
+								<td th:text="${Usuario.email}"></td>
 								<td th:text="${Usuario.contraseña}"></td>
 								<td th:text="${Usuario.positivo}"></td>
 								<td th:text="${Usuario.contactos}"></td>

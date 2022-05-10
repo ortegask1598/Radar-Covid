@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -17,12 +18,23 @@ import org.springframework.web.client.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.upm.dit.isst.radarcovid.radarwebapp.model.Usuario;
+import es.upm.dit.isst.radarcovid.radarwebapp.repository.UsuarioRepository;
+import es.upm.dit.isst.radarcovid.radarwebapp.service.IUsuarioService;
 
 
 
 @Controller
 
 public class UsuarioController {
+
+        private IUsuarioService usuarioService;
+        private final UsuarioRepository usuarioRepository;
+       // public static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
+
+        public UsuarioController(UsuarioRepository t) {
+                this.usuarioRepository = t;
+          
+            }
 
         public final String USERMANAGER_STRING= "http://localhost:8083/usuarios/";
 
@@ -41,20 +53,44 @@ public class UsuarioController {
 
         @GetMapping("/")
 
-        public String inicio() {
+        public String inicio( Map<String, Object> model) {
+
+                Usuario Usuario = new Usuario();
+
+                model.put("Usuario", Usuario);
+
 
                 return VISTA_LOGGIN;
 
         }
 
 
-        @GetMapping("/inicio")
+        @GetMapping("/inicio")//("/inicio/{id}")
 
         public String login() {
 
                 return VISTA_INICIO;
 
         }  
+
+/* 	@GetMapping("/clients/client")
+	public String getUsuario(Model model, @RequestParam("id") String id){
+		var usuario  = usuarioService.findOne(id);
+		model.addAttribute("usuario", usuario);
+		return VISTA_INICIO;
+	} */
+     
+
+
+        // Creo que esta es la correcta, me suena haberla visto en diapos y examenes, pero no se por qué da map como error
+        
+/*         @GetMapping("/inicio/{id}")
+        ResponseEntity<Usuario> readById(@PathVariable String id) {
+          return usuarioRepository.findById(id).map (usuario ->
+                ResponseEntity.ok().body(usuario)
+          ).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));
+        }  */
+
 
 
        @GetMapping("/lista_usuarios")//DONE EXCEPT ALLOWS
@@ -68,7 +104,8 @@ public class UsuarioController {
                         lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING,
 
                                            Usuario[].class).getBody());
-
+                
+                model.addAttribute("usuarios", lista);
                 /* else if (principal.getName().contains("@upm.es"))
 
                         lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING
@@ -91,7 +128,6 @@ public class UsuarioController {
 
                 } */
 
-                model.addAttribute("usuarios", lista);
 
                 return VISTA_ALL_USERS;
 
@@ -125,7 +161,7 @@ public class UsuarioController {
 
                 } catch(Exception e) {}
 
-                return  VISTA_INICIO;
+                return  "redirect:/";
 
         }
 
@@ -182,5 +218,25 @@ public class UsuarioController {
         return "redirect:/" + VISTA_INICIO;
 
     }
+
+    @GetMapping("/comprobar")
+
+    public String comprobar(Usuario Usuario, BindingResult result) {
+
+        List<Usuario> lista = new ArrayList<Usuario>();
+
+        if (result.hasErrors()) {
+
+                return VISTA_LOGGIN;
+
+        }
+        lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING,
+
+                Usuario[].class).getBody());
+
+
+        return  "redirect:/";
+
+}
 
 }
