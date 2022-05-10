@@ -208,7 +208,7 @@ public class UsuarioController {
 
         }
 
-        return  "redirect:/" + Usuario.getEmail();
+        return  "redirect:/inicio/" + Usuario.getEmail();
 
 
 }
