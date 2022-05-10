@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <!-- <link rel="stylesheet" type="text/css" href="css/sprint1.css">  -->
-<link th:href="@{css/sprint1.css}" rel="stylesheet" />
+<link th:href="@{../css/sprint1.css}" rel="stylesheet" />
 <div id=fondo>
 <head>
 	
@@ -17,9 +17,9 @@
 	
 </header>
 <body>
-	<form th:action="@{${accion}}" th:object="${Usuario}" method="post">	
+	<form th:action="@{${accion}}" th:object="${Usuario}"  method="post">	
 		<p>Hola <a th:text="${Usuario.email}"></a></p>
-
+		
 		<p>¿Has dado positivo en un test covid?</p>
 
 		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.positivo}"></label>

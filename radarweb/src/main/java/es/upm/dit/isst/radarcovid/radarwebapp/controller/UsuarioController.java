@@ -17,6 +17,7 @@ import org.springframework.web.client.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.upm.dit.isst.radarcovid.radarwebapp.model.Usuario;
+import es.upm.dit.isst.radarcovid.radarwebapp.model.Contacto_Estrecho;
 
 
 
@@ -25,6 +26,8 @@ import es.upm.dit.isst.radarcovid.radarwebapp.model.Usuario;
 public class UsuarioController {
 
         public final String USERMANAGER_STRING= "http://localhost:8083/usuarios/";
+
+        public final String CONTACT_MANAGER_STRING= "http://localhost:8083/contactos/";
 
         public static final String VISTA_INICIO = "main";
 
@@ -63,7 +66,18 @@ public class UsuarioController {
 /*                 List<Usuario> usuarios = new ArrayList<Usuario>();
                 Usuario Usuario = new Usuario(); */
 
-               Usuario Usuario = restTemplate.getForObject(USERMANAGER_STRING + id, Usuario.class);
+                Usuario Usuario = restTemplate.getForObject(USERMANAGER_STRING + id, Usuario.class);
+/*                 if(id.contains("@alumnos.upm.es")){
+
+                        model.put("Usuario", Usuario);
+
+                        model.put("accion", "../notificar/" + id);
+        
+                        return VISTA_INICIO;
+                }else  */if (id.contains("@admin.com")){
+
+                        return "admin";
+                }
 
                 model.put("Usuario", Usuario);
 
@@ -74,7 +88,7 @@ public class UsuarioController {
         }  
 
 
-       @GetMapping("/lista_usuarios")//DONE EXCEPT ALLOWS
+       @GetMapping("/listausuarios")//DONE EXCEPT ALLOWS
 
         public String lista(Model model, Principal principal) {
 
