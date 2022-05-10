@@ -18,18 +18,26 @@
 	
 </header>
 <body>
-		<div id=registro>
-			<div class=formulario>
-				<p class="spacer"></p>
-				<p>Correo electrónico: <input  type="text" id="dni" placeholder="Escribe aquí..."></p>
-				<p>Contraseña: <input  type="text" id="contraseña1" placeholder="Escribe aquí..."></p>
-				<button class="boton"><a href="inicio">INICIAR SESIÓN</a></button>
-				<p>--------------------------------------------------------------------------------------------------------------</p>
-				<p class="spacer"></p>
-				<p>¿No tienes cuenta? <u><a href="crear">Regístrate</a></u></p>
-			
-			</div>
+ 	<form th:action="@{${accion}}" th:object="${Usuario}" method="post">
+
+		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.email}"></label>
+		<div class="col-sm-6">
+			<input type="text" th:field="*{email}">
+			<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small> -->
 		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.contrasena}"></label>
+			<div class="col-sm-6">
+				<input type="text" th:field="*{contraseña}">
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></small>
+			</div>
+		</div> 
+		<td>
+			<input type="submit" th:value="Enviar" class="btn btn-outline-primary">
+			<a th:href="@{${accion} == '/comprobar' OR ${#fields.hasErrors('*')} ? 'inicio/{Usuario.email}' : '../inicio/{Usuario.email}'}"></a>
+		</td> 
+		<p>¿No tienes cuenta? <u><a href="crear">Regístrate</a></u></p>
+		
 </body>
 <footer class="piedepagina">
 

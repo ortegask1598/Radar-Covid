@@ -41,7 +41,7 @@
 		</div>
 		<div class="col-sm-6">
 			<input type="submit" th:value="#{usuarios.acciones.guardar}" class="btn btn-outline-primary">
-			<a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? 'inicio' : '../inicio'}"
+			<a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? '/' : '../'}"
 			class="btn btn-outline-danger" th:text="#{usuarios.acciones.cancelar}"></a>
 			<!-- a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? 'lista' : '../lista'}" class="btn btn-outline-danger" th:text="#{tfgs.acciones.cancelar}"></a-->
 		</div>

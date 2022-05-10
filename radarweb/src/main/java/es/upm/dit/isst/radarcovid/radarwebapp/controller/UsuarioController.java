@@ -41,14 +41,21 @@ public class UsuarioController {
 
         @GetMapping("/")
 
-        public String inicio() {
+        public String inicio( Map<String, Object> model) {
+
+                Usuario Usuario = new Usuario();
+
+                model.put("Usuario", Usuario);
+
+                model.put("accion", "/comprobar");
+
 
                 return VISTA_LOGGIN;
 
         }
 
 
-        @GetMapping("/inicio")
+        @GetMapping("/inicio")//("/inicio/{id}")
 
         public String login() {
 
@@ -62,13 +69,14 @@ public class UsuarioController {
         public String lista(Model model, Principal principal) {
 
                 List<Usuario> lista = new ArrayList<Usuario>();
-
-                if (principal == null || principal.getName().equals(""))
+/* 
+                if (principal == null || principal.getName().equals("")) */
 
                         lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING,
 
                                            Usuario[].class).getBody());
-
+                
+                model.addAttribute("usuarios", lista);
                 /* else if (principal.getName().contains("@upm.es"))
 
                         lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING
@@ -91,7 +99,6 @@ public class UsuarioController {
 
                 } */
 
-                model.addAttribute("usuarios", lista);
 
                 return VISTA_ALL_USERS;
 
@@ -125,7 +132,7 @@ public class UsuarioController {
 
                 } catch(Exception e) {}
 
-                return  VISTA_INICIO;
+                return  "redirect:/inicio/" + Usuario.getId();
 
         }
 
@@ -182,5 +189,20 @@ public class UsuarioController {
         return "redirect:/" + VISTA_INICIO;
 
     }
+
+    @GetMapping("/comprobar")
+
+    public String comprobar(Usuario Usuario, BindingResult result) {
+
+        if (result.hasErrors()) {
+
+                return VISTA_LOGGIN;
+
+        }
+
+        return  "redirect:/";
+
+
+}
 
 }
