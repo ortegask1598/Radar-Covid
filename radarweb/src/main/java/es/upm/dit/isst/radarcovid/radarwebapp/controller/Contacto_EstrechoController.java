@@ -37,7 +37,7 @@ public class Contacto_EstrechoController {
 
 
 
-        @GetMapping("/lista_contactos")//DONE EXCEPT ALLOWS
+/*         @GetMapping("/lista_contactos")//DONE EXCEPT ALLOWS
 
         public String lista(Model model, Principal principal) {
 
@@ -49,33 +49,39 @@ public class Contacto_EstrechoController {
 
                         Contacto_Estrecho[].class).getBody());
 
-                /* else if (principal.getName().contains("@upm.es"))
-
-                        lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING
-
-                                    + "profesor/" + principal.getName()
-
-                                              ,Usuario[].class).getBody());
-
-                else if (principal.getName().contains("@alumnos.upm.es")){
-
-                        try { Usuario usuario = restTemplate.getForObject(USERMANAGER_STRING
-
-                                    + principal.getName(), Usuario.class);
-
-                          if (usuario != null)
-
-                                lista.add(usuario);
-
-                        } catch (Exception e) {}
-
-                } */
 
                 model.addAttribute("contactos", lista);
 
                 return VISTA_ALL_CONTACTS;
 
+        }  */
+
+        @GetMapping("/listacontactos")//DONE EXCEPT ALLOWS
+
+        public String lista(Model model, Principal principal, @RequestParam(value="textbox_id", required=false) String id) {
+
+                List<Contacto_Estrecho> lista = new ArrayList<Contacto_Estrecho>();
+
+             
+                        try { Contacto_Estrecho contacto = restTemplate.getForObject(CONTACT_MANAGER_STRING
+
+                                    + id, Contacto_Estrecho.class);
+
+                          if (contacto != null)
+
+                                lista.add(contacto);
+
+                        } catch (Exception e) {}
+
+                
+ 
+                model.addAttribute("contactos", lista);
+
+                return VISTA_ALL_CONTACTS;
+
         }
+ 
+
 
        @GetMapping("/registrarpositivo")
 

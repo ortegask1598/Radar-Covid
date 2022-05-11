@@ -6,7 +6,7 @@ public class Usuario {
 
     private String id;
     @Email
-    private String email;
+    public String email;
     @NotEmpty
     private String contraseña;
     @NotEmpty

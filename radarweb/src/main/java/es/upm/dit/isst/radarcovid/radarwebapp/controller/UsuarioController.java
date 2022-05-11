@@ -15,9 +15,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import es.upm.dit.isst.radarcovid.radarwebapp.model.Usuario;
 import es.upm.dit.isst.radarcovid.radarwebapp.model.Contacto_Estrecho;
+import es.upm.dit.isst.radarcovid.radarwebapp.repository.UsuarioRepository;
 
 
 
@@ -37,7 +38,10 @@ public class UsuarioController {
 
         public static final String VISTA_FORMULARIO = "registro";
 
+        public static final String VISTA_ADMIN = "admin";
+
         public static final String VISTA_NOTIFICAR_POSITIVO = "Notificar-positivo";
+
 
 
         private RestTemplate restTemplate = new RestTemplate();
@@ -74,46 +78,47 @@ public class UsuarioController {
                         model.put("accion", "../notificar/" + id);
         
                         return VISTA_INICIO;
-                }else  */if (id.contains("@admin.com")){
+                }else  */
+                if (id.contains("@admin.com")){
 
                         return "admin";
-                }
+                } else{
 
                 model.put("Usuario", Usuario);
 
                 model.put("accion", "../notificar/" + id);
 
                 return VISTA_INICIO;
+                }
 
         }  
 
 
-       @GetMapping("/listausuarios")//DONE EXCEPT ALLOWS
+        @GetMapping("/listausuarios")//DONE EXCEPT ALLOWS
 
         public String lista(Model model, Principal principal) {
 
                 List<Usuario> lista = new ArrayList<Usuario>();
-/* 
-                if (principal == null || principal.getName().equals("")) */
-
                         lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING,
 
                                            Usuario[].class).getBody());
                 
                 model.addAttribute("usuarios", lista);
-                /* else if (principal.getName().contains("@upm.es"))
 
-                        lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING
 
-                                    + "profesor/" + principal.getName()
+                return VISTA_ALL_USERS;
 
-                                              ,Usuario[].class).getBody());
+        }
 
-                else if (principal.getName().contains("@alumnos.upm.es")){
+/*         @GetMapping("/listausuarios")//DONE EXCEPT ALLOWS
+
+        public String lista(Model model, Principal principal, @RequestParam(value="id") String id) {
+
+                List<Usuario> lista = new ArrayList<Usuario>();
 
                         try { Usuario usuario = restTemplate.getForObject(USERMANAGER_STRING
 
-                                    + principal.getName(), Usuario.class);
+                                    + id, Usuario.class);
 
                           if (usuario != null)
 
@@ -121,12 +126,15 @@ public class UsuarioController {
 
                         } catch (Exception e) {}
 
-                } */
+                
 
+                model.addAttribute("usuarios", lista);
 
                 return VISTA_ALL_USERS;
 
-        }
+        }  */
+
+
 
         @GetMapping("/crear")
 
@@ -212,19 +220,38 @@ public class UsuarioController {
 
     }
 
-    @PostMapping("/comprobar")
+/*     @RequestMapping(value = "/comprobar", method = RequestMethod.POST)
+    public String comprobar(Model model, String email, Usuario Usuario, BindingResult result){
+        //Usuario usuario = new Usuario();
+        @ModelAttribute("usuario") Usuario usuario;
+        model.addAttribute("email", email);
+        if (result.hasErrors()) {
+
+                return VISTA_FORMULARIO;
+
+        }
+        model.addAttribute("email", usuario.getEmail());
+
+        if (model.email = ""){
+                
+        }
+    } */
+ 
+
+     @PostMapping("/comprobar")
 
     public String comprobar(Usuario Usuario, BindingResult result) {
 
         if (result.hasErrors()) {
 
-                return VISTA_LOGGIN;
+                return VISTA_FORMULARIO;
 
         }
 
         return  "redirect:/inicio/" + Usuario.getEmail();
 
+        }
 
-}
+
 
 }

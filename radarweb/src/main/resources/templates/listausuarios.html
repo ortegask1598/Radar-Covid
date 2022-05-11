@@ -17,7 +17,7 @@
 	
 </header>
 <body>
-		<div id=registro>
+<!--  		<div id=registro>
 			<div class=insertar>
 				<p class="spacer"></p>
 				<button class="botonM"><a href="inicio">Menú Principal</a></button></a>
@@ -32,10 +32,6 @@
 								<th th:text="#{usuarios.USUARIO.contraseña}"></th>
 								<th th:text="#{usuarios.USUARIO.positivo}"></th>
 								<th th:text="#{usuarios.USUARIO.contactos}"></th>
-								<!-- <span sec:authorize="isAuthenticated()">
-									<th th:text="#{tfgs.TFG.status}"></th>		
-									<th th:text="#{tfgs.TFG.memoria}"></th>
-								</span> -->
 								<th>-</th>
 								<th>-</th>
 								<th>-</th>
@@ -48,26 +44,6 @@
 								<td th:text="${Usuario.contraseña}"></td>
 								<td th:text="${Usuario.positivo}"></td>
 								<td th:text="${Usuario.contactos}"></td>
-								<!-- <span sec:authorize="isAuthenticated()">
-									<td th:text="${TFG.status}"></td>
-									<td>
-										<form method="post" th:action="@{/upload}" th:object="${TFG}" enctype="multipart/form-data">
-											<div class="form-group">
-												<input type="hidden" th:value="${TFG.email}" name="email">
-												<input type="file" name="file" class="form-control-file">
-											<button type="submit" class="btn btn-outline-primary">Upload File</button>
-										</div></form>
-									</td>
-									<td><a th:href="@{download/} + ${TFG.email}" th:text="#{tfgs.acciones.memoria}" class="btn btn-outline-primary"></a>
-									</td>
-									<td>
-										<a th:href="@{editar/} + ${TFG.email}" th:text="#{tfgs.acciones.editar}" class="btn btn-outline-primary"></a>
-									</td><td>	
-										<a th:href="@{eliminar/} + ${TFG.email}" th:text="#{tfgs.acciones.eliminar}" class="btn btn-outline-danger"></a>
-									</td><td>
-										<a th:href="@{aceptar/} + ${TFG.email}" th:text="#{tfgs.acciones.aceptar}" class="btn btn-outline-danger"></a>
-									</td>
-								</span> -->
 							</tr>
 						</tbody>
 						<tfoot>
@@ -80,7 +56,29 @@
 					</table>
 				</div>
 			</div>
-		</div>
+		</div>  -->
+
+		 <table class="table table-striped">
+			<thead>
+				<tr>
+					<th th:text="usuarios.id"></th>
+					<th th:text="usuarios.email"></th>
+					<th th:text="usuarios.contrasena"></th>
+					<th th:text="usuarios.positivo"></th>
+					<th th:text="usuarios.contactos"></th>
+		
+			</thead>
+			
+		<tbody>
+			<tr th:each="Usuario: ${usuarios}">
+				<td th:text="${Usuario.id}"></td>
+				<td th:text="${Usuario.email}"></td>
+				<th>-</th>
+				<td th:text="${Usuario.positivo}"></td>
+				<td th:text="${Usuario.contactos}"></td>
+			</tr>
+		</tbody>
+		</table> 
 </body>
 <footer class="piedepagina">
 
@@ -91,8 +89,8 @@
 			<div class="privacidad"><h5>Políticas de privacidad</h5></div>
 		</div>
 		<div class="box">
-			<h2>SOBRE NOSOTROS</h2>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, ipsa?</p>
+			<h4>SOBRE NOSOTROS</h4>
+			<p>Protégete y protege a los tuyos. Recibe alertas de contactos de riesgo por COVID-19 </p>
 		</div>
 		<div class="box">
 			<figure>

@@ -17,11 +17,13 @@
 	
 </header>
 <body>
+	
 	<div class="formulario">
 	<form th:action="@{${accion}}" th:object="${Usuario}" method="post">	
 		<h1 class="mensaje">Hola <a th:text="${Usuario.email}"></a></h1>
 
 		<p class="pregunta">¿Has dado positivo en un test covid?</p>
+		<h5>Escriba "true" si es ud. positivo, o "false" en caso contrario contrario</h5>
 
 		<label class="col-sm-2 col-form-label" th:text="#{usuarios.USUARIO.positivo}"></label>
 		<div class="col-sm-6">
@@ -48,8 +50,8 @@
 			<div class="privacidad"><h5>Políticas de privacidad</h5></div>
 		</div>
 		<div class="box">
-			<h2>SOBRE NOSOTROS</h2>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, ipsa?</p>
+			<h4>SOBRE NOSOTROS</h4>
+			<p>Protégete y protege a los tuyos. Recibe alertas de contactos de riesgo por COVID-19 </p>
 		</div>
 		<div class="box">
 			<figure>
