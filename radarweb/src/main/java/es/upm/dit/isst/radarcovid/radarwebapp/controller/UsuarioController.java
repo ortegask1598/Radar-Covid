@@ -92,15 +92,14 @@ public class UsuarioController {
 
         public String lista(Model model, Principal principal) {
 
-                List<Usuario> lista = new ArrayList<Usuario>();
 /* 
                 if (principal == null || principal.getName().equals("")) */
 
-                        lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING,
+                List<Usuario> usuarios = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING,
 
                                            Usuario[].class).getBody());
                 
-                model.addAttribute("usuarios", lista);
+                model.addAttribute("usuarios", usuarios);
                 /* else if (principal.getName().contains("@upm.es"))
 
                         lista = Arrays.asList(restTemplate.getForEntity(USERMANAGER_STRING
@@ -202,15 +201,6 @@ public class UsuarioController {
                 return "redirect:" + VISTA_INICIO;
 
         }
-    @GetMapping("/eliminar/{id}")
-
-    public String eliminar(@PathVariable(value = "id") String id) {
-
-        restTemplate.delete(USERMANAGER_STRING+ id);
-
-        return "redirect:/" + VISTA_INICIO;
-
-    }
 
     @PostMapping("/comprobar")
 

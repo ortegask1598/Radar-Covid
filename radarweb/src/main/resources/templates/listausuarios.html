@@ -24,60 +24,72 @@
 				<p class="spacer"></p>
 				<p class=listausuarios>Lista de Usuarios</p>
 				<div class=cuadro>
-                    <table class="table table-striped">
-						<thead>
-							<tr>
-								<th th:text="#{usuarios.USUARIO.id}"></th>
-								<th th:text="#{usuarios.USUARIO.email}"></th>
-								<th th:text="#{usuarios.USUARIO.contraseña}"></th>
-								<th th:text="#{usuarios.USUARIO.positivo}"></th>
-								<th th:text="#{usuarios.USUARIO.contactos}"></th>
-								<!-- <span sec:authorize="isAuthenticated()">
-									<th th:text="#{tfgs.TFG.status}"></th>		
-									<th th:text="#{tfgs.TFG.memoria}"></th>
-								</span> -->
-								<th>-</th>
-								<th>-</th>
-								<th>-</th>
-								<th>-</th>			
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="USUARIO: ${usuarios}">
-								<td th:text="${Usuario.email}"></td>
-								<td th:text="${Usuario.contraseña}"></td>
-								<td th:text="${Usuario.positivo}"></td>
-								<td th:text="${Usuario.contactos}"></td>
-								<!-- <span sec:authorize="isAuthenticated()">
-									<td th:text="${TFG.status}"></td>
-									<td>
-										<form method="post" th:action="@{/upload}" th:object="${TFG}" enctype="multipart/form-data">
-											<div class="form-group">
-												<input type="hidden" th:value="${TFG.email}" name="email">
-												<input type="file" name="file" class="form-control-file">
-											<button type="submit" class="btn btn-outline-primary">Upload File</button>
-										</div></form>
-									</td>
-									<td><a th:href="@{download/} + ${TFG.email}" th:text="#{tfgs.acciones.memoria}" class="btn btn-outline-primary"></a>
-									</td>
-									<td>
-										<a th:href="@{editar/} + ${TFG.email}" th:text="#{tfgs.acciones.editar}" class="btn btn-outline-primary"></a>
-									</td><td>	
-										<a th:href="@{eliminar/} + ${TFG.email}" th:text="#{tfgs.acciones.eliminar}" class="btn btn-outline-danger"></a>
-									</td><td>
-										<a th:href="@{aceptar/} + ${TFG.email}" th:text="#{tfgs.acciones.aceptar}" class="btn btn-outline-danger"></a>
-									</td>
-								</span> -->
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="5">
-									<a th:href="@{crear}" class="btn btn-outline-primary btn-block" th:text="#{usuarios.acciones.anadir}"></a>
-								</td>
-							</tr>
-						</tfoot>
-					</table>
+					<div class="tabla">
+                    <table class="tabla">
+
+						<tr>
+					  
+						  <th>Id</th>
+					  
+						  <th>Correo</th>
+					  
+						  <th>Contraseña</th>
+
+						  <th>Positivo</th>
+
+						  <th>Contactos</th>
+
+
+					  
+						</tr>
+					  
+						<tr>
+					  
+						  <td>1</td>
+					  
+						  <td>pepe@admin.com</td>
+					  
+						  <td>pepe123</td>
+
+						  <td>false</td>
+
+						  <td>false</td>
+
+
+						  
+					  
+						</tr>
+					  
+						<tr>
+					  
+							<td>2</td>
+						
+							<td>d.ortegaf@alumnos.upm.es</td>
+						
+							<td>dani123</td>
+  
+							<td>false</td>
+  
+							<td>true</td>
+
+						  </tr>
+					  
+						  <tr>
+					  
+							<td>3</td>
+						
+							<td>alberto@alumnos.upm.es</td>
+						
+							<td>alberto123</td>
+  
+							<td>true</td>
+  
+							<td>false</td>
+
+						  </tr>
+					  
+					  </table>
+					</div>
 				</div>
 			</div>
 		</div>
